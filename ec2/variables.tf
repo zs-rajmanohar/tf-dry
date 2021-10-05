@@ -1,5 +1,5 @@
-variable "instance_name" {
-  description = "Value of the Name tag for the EC2 instance"
+variable "Ec2_ami" {
+  description = "Value for Ec2 AMI"
   type        = string
-  default     = "sample_terraform"
+  default     = "ami-0eb5f3f64b10d3e0e"
 }
