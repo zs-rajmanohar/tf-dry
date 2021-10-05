@@ -1,10 +1,4 @@
 terraform {
-  backend "remote" {
-    organization = "pradeep349"
-    workspaces {
-      name = "terraform_prac"
-    }
-  }
   required_providers {
     aws = {
       source  = "hashicorp/aws"
@@ -20,12 +14,8 @@ provider "aws" {
   region  = "us-east-1"
 }
 
-resource "aws_s3_bucket" "b" {
-  bucket = "my-tf-t-bucket"
-  acl    = "private"
-
-  tags = {
-    Name        = "My bucket"
-    Environment = "Dev"
-  }
+resource "aws_instance" "app_server" {
+  ami           =  var.instance_name
+  instance_type = "t2.micro"
 }
+
