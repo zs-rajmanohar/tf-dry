@@ -1,3 +1,23 @@
+terraform {
+  backend "remote" {
+    organization = "pradeep349"
+  workspaces {
+    name = "terraform_local"
+    }
+  }
+  required_providers {
+  aws = {
+    source  = "hashicorp/aws"
+    version = "~> 3.27"
+    }
+ }
+
+  required_version = ">= 0.14.9"
+}
+provider "aws" {
+  profile = "default"
+  region  = "us-east-1"
+}
 resource "aws_vpc" "vpc" {
   cidr_block              = "${var.vpc-cidr}"
   instance_tenancy        = "default"
@@ -75,20 +95,32 @@ resource "aws_route_table_association" "public-subnet-3-route-table" {
   route_table_id      = aws_route_table.public-route-table.id
 }
 
-resource "aws_route_table_association" "private-subnet-1-route-table" {
-  subnet_id           = aws_subnet.private-subnet-1.id
-  route_table_id      = aws_route_table.Private-route-table.id
-}
+# resource "aws_route_table" "private-route-table" {
+#   vpc_id       = aws_vpc.vpc.id
 
-resource "aws_route_table_association" "private-subnet-2-route-table" {
-  subnet_id           = aws_subnet.private-subnet-2.id
-  route_table_id      = aws_route_table.Private-route-table.id
-}
+#   route {
+#     cidr_block = "0.0.0.0/0"
+#     gateway_id = aws_internet_gateway.igw.id
+#   }
 
-resource "aws_route_table_association" "private-subnet-3-route-table" {
-  subnet_id           = aws_subnet.private-subnet-3.id
-  route_table_id      = aws_route_table.Private-route-table.id
-}
+#   tags       = {
+#     Name     = "private Route Table"
+#   }
+# }
+# resource "aws_route_table_association" "private-subnet-1-route-table" {
+#   subnet_id           = aws_subnet.private-subnet-1.id
+#   route_table_id      = aws_route_table.Private-route-table.id
+# }
+
+# resource "aws_route_table_association" "private-subnet-2-route-table" {
+#   subnet_id           = aws_subnet.private-subnet-2.id
+#   route_table_id      = aws_route_table.Private-route-table.id
+# }
+
+# resource "aws_route_table_association" "private-subnet-3-route-table" {
+#   subnet_id           = aws_subnet.private-subnet-3.id
+#   route_table_id      = aws_route_table.Private-route-table.id
+# }
 
 resource "aws_subnet" "private-subnet-1" {
   vpc_id                   = aws_vpc.vpc.id
