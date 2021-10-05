@@ -75,6 +75,21 @@ resource "aws_route_table_association" "public-subnet-3-route-table" {
   route_table_id      = aws_route_table.public-route-table.id
 }
 
+resource "aws_route_table_association" "private-subnet-1-route-table" {
+  subnet_id           = aws_subnet.private-subnet-1.id
+  route_table_id      = aws_route_table.Private-route-table.id
+}
+
+resource "aws_route_table_association" "private-subnet-2-route-table" {
+  subnet_id           = aws_subnet.private-subnet-2.id
+  route_table_id      = aws_route_table.Private-route-table.id
+}
+
+resource "aws_route_table_association" "private-subnet-3-route-table" {
+  subnet_id           = aws_subnet.private-subnet-3.id
+  route_table_id      = aws_route_table.Private-route-table.id
+}
+
 resource "aws_subnet" "private-subnet-1" {
   vpc_id                   = aws_vpc.vpc.id
   cidr_block               = "${var.private-subnet-1-cidr}"
