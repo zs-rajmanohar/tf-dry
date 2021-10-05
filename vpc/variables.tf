@@ -21,7 +21,6 @@ variable "public_subnet" {
       "us-east-1c" = 3
     }
 
-
 }
 
 variable "private_subnet" {
