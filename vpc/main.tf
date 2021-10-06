@@ -10,7 +10,7 @@ resource "aws_vpc" "vpc" {
 }
  
 resource "aws_subnet" "public" {
-  for_each = var.public_subnet
+  for_each = var.public_subnet_numbers
  
   vpc_id            = aws_vpc.vpc.id
   availability_zone = each.key
@@ -29,7 +29,7 @@ resource "aws_subnet" "public" {
 }
  
 resource "aws_subnet" "private" {
-  for_each = var.private_subnet
+  for_each = var.private_subnet_numbers
  
   vpc_id            = aws_vpc.vpc.id
   availability_zone = each.key

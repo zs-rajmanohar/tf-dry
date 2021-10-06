@@ -1,6 +1,6 @@
 variable "infra_env" {
     type = string
-   description = "infrastructure environment"
+   description = "inv"
 
 }
 
@@ -10,7 +10,7 @@ variable "vpc_cidr" {
     default = "10.0.0.0/16"
 }
 
-variable "public_subnet" {
+variable "public_subnet_numbers" {
     type = map(number)
 
     description = "Map of AZ to a number that should be used for public subnets"
@@ -23,7 +23,7 @@ variable "public_subnet" {
 
 }
 
-variable "private_subnet" {
+variable "private_subnet_numbers" {
     type = map(number)
 
     description = "Map of AZ to a number that should be used for private subnets"
