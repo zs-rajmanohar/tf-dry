@@ -1,6 +1,6 @@
 terraform {
   backend "remote" {
-    organization = "pradeep349"
+    organization = "raj21"
   workspaces {
     name = "terraform_local"
     }
